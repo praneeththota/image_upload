@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: rebeltest
+  api_key: '346641644777786'
+  api_secret: RlsqgLpaL0gzwc8-XCCihfEt-Ys
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: rebeltest
+  api_key: '346641644777786'
+  api_secret: RlsqgLpaL0gzwc8-XCCihfEt-Ys
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: rebeltest
+  api_key: '346641644777786'
+  api_secret: RlsqgLpaL0gzwc8-XCCihfEt-Ys
+  enhance_image_tag: true
+  static_image_support: false

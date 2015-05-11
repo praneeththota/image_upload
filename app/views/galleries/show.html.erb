@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Imagfdfde:</strong>
+  <%#= @gallery.image_url %>
+  <%#= image_tag @gallery.image_url %>
+  <%= cl_image_tag("hello_world.jpg") %>
+  <%#= cl_image_tag("yn9jzcfxl6mz0lvkptgr.jpg", :width => 50, :height => 50, 
+             :crop => :crop, :gravity => :face) %>
+</p>
+
+<%= link_to 'Edit', edit_gallery_path(@gallery) %> |
+<%= link_to 'Back', galleries_path %>
