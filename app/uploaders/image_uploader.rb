@@ -12,13 +12,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
-   process :tags => ['gallery_image']
-
-  # Override the directory where uploaded files will be stored.
+   process :convert => 'png'
+ # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  def public_id
-    return "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end  
+  # def public_id
+  #   return "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  # end  
+ 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end

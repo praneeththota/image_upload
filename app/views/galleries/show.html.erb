@@ -4,7 +4,7 @@
   <strong>Imagfdfde:</strong>
   <%#= @gallery.image_url %>
   <%#= image_tag @gallery.image_url %>
-  <%= cl_image_tag("hello_world.jpg") %>
+  <%= cl_image_tag("#{@gallery.image_name}") %>
   <%#= cl_image_tag("yn9jzcfxl6mz0lvkptgr.jpg", :width => 50, :height => 50, 
              :crop => :crop, :gravity => :face) %>
 </p>

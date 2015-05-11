@@ -25,11 +25,11 @@ class GalleriesController < ApplicationController
   # POST /galleries.json
   def create
     @gallery = Gallery.new(gallery_params)
-    #preloaded = Cloudinary::Uploader.upload(@gallery.image.file.path, :public_id => 'hello_world') 
-    #Cloudinary::Uploader.upload(@gallery.image.file.path, :public_id => 'hello_world')
+    preloaded = Cloudinary::Uploader.upload(@gallery.image.file.path)
+    @gallery.image_name = preloaded["url"]
+    @gallery.public_id = preloaded["public_id"]
     respond_to do |format|
       if @gallery.save
-        preloaded = Cloudinary::Uploader.upload(@gallery.image.file.path, :public_id => 'hello_world') 
         format.html { redirect_to @gallery, notice: 'Gallery was successfully created.' }
         format.json { render :show, status: :created, location: @gallery }
       else
@@ -38,12 +38,15 @@ class GalleriesController < ApplicationController
       end
     end
   end
-  def write_uploader
-  end
+
 
   # PATCH/PUT /galleries/1
   # PATCH/PUT /galleries/1.json
   def update
+    preloaded = Cloudinary::Uploader.destroy(@gallery.public_id)
+    preloaded = Cloudinary::Uploader.upload(params[:gallery][:image])
+    @gallery.image_name = preloaded["url"]
+    @gallery.public_id = preloaded["public_id"]
     respond_to do |format|
       if @gallery.update(gallery_params)
         format.html { redirect_to @gallery, notice: 'Gallery was successfully updated.' }
@@ -58,6 +61,7 @@ class GalleriesController < ApplicationController
   # DELETE /galleries/1
   # DELETE /galleries/1.json
   def destroy
+    preloaded = Cloudinary::Uploader.destroy(@gallery.public_id)
     @gallery.destroy
     respond_to do |format|
       format.html { redirect_to galleries_url, notice: 'Gallery was successfully destroyed.' }
@@ -73,6 +77,6 @@ class GalleriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gallery_params
-      params.require(:gallery).permit(:image)
+      params.require(:gallery).permit(:image, :image_name, :public_id)
     end
 end
